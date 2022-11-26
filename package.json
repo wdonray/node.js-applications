@@ -1,0 +1,37 @@
+{
+  "name": "node-js-applications",
+  "version": "1.0.0",
+  "description": "Creating a Node.js demo repo with notes, examples, and applications.",
+  "directories": {
+    "examples": "examples",
+    "applications": "applications",
+    "taking-notes": "taking-notes"
+  },
+  "scripts": {
+    "app:notes": "node applications/taking-notes/main.js",
+    "inspect:notes": "node inspect applications/taking-notes/main.js",
+
+    "app:task": "nodemon applications/task/main.js",
+    "app:weather": "nodemon applications/weather/main.js",
+
+    "example:append": "node examples/appendFile/append-message.js",
+    "example:exporting": "node examples/exporting/importing.js",
+    "example:json1": "node examples/json/1-json.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wdonray/node.js-applications.git"
+  },
+  "author": "Donray Williams",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wdonray/node.js-applications/issues"
+  },
+  "homepage": "https://github.com/wdonray/node.js-applications#readme",
+  "type": "module",
+  "dependencies": {
+    "chalk": "^5.1.2",
+    "validator": "^13.7.0",
+    "yargs": "^17.6.2"
+  }
+}
