@@ -17,13 +17,13 @@ Node.js expanded the capabilities of Javascript. Before Node, JS was limited to 
 - Node is not a programming language.
 - Node sends JS code to V8 JS Engine (C++) to get the results back.
 - JS is really just running C++ behind the scenes.
+- Asynchronous, Non-blocking, Single Threaded and Event Driven.
 
 
 # Why should you use Node.js?
 ---
 
 Node uses an event-driven, non-blocking input/output model that makes it lightweight and efficient. While you are making request Node can still run as you are waiting for that request to return a response.
-
 
 #### Blocking I/O Model (Total Time: 4.5 Seconds)
 ```javascript
