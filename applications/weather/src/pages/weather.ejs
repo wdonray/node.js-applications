@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include('../components/head'); %>
+</head>
+
+<body>
+  <%- include('../components/header'); %>
+
+  <main class="container">
+    <h1><%= address %></h1>
+    <div class="weather-container">
+      <h4>City: <%= weatherData.name %></h4>
+      <span>Temperature: <%= weatherData.temp %> °F</span>
+      <span>Feels Like: <%= weatherData.feels_like %> °F</span>
+      <span>Description: <%= weatherData.description %></span>
+    </div>
+  </main>
+
+  <%- include('../components/footer'); %>
+</body>
+
+</html>

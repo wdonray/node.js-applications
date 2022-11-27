@@ -3,7 +3,7 @@ import chalk from 'chalk';
 import dotenv from 'dotenv';
 import express from 'express';
 import path from 'path';
-import ejs from 'ejs';
+import { getWeather } from '../api/index.js'
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -35,6 +35,29 @@ app.get('/', (_req, res) => {
   res.render('index', {
     siteName: 'Weather Or Not',
   });
+});
+
+// Render the weather route
+app.get('/weather', async (req, res) => {
+  const searchParam = req.query.search;
+
+  try {
+    const { temp, feels_like, name, description } = await getWeather(searchParam);
+
+    res.render('weather', {
+      address: searchParam ? 'Check it out...' : 'No search param',
+      weatherData: {
+        temp, 
+        feels_like, 
+        name, 
+        description,
+      }
+    });
+  } catch(err) {
+    res.render('404', {
+      helpText: 'Error loading weather!'
+    });
+  }
 });
 
 // Render about route

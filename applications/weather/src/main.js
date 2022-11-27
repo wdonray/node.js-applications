@@ -1,19 +1,10 @@
-// import chalk from 'chalk';
-// import dotenv from 'dotenv';
+const searchForm = document.getElementById('search-form')
+const searchField = document.getElementById('search-field');
 
-// import { getWeather } from '../utils/getWeather.js';
+searchForm.addEventListener('submit', (event) => {
+  event.preventDefault();
 
-// dotenv.config()
+  const location = searchField.value;
 
-// console.log(chalk.green('Starting weather app...'));
-// console.log(chalk.yellow('--- --- ---'));
-
-// const { temp, feels_like, name, description } = await getWeather(process.argv[2]);
-
-// console.log(chalk.blue(`It is currently ${temp} in ${name} and it feels like ${feels_like} with ${description}`));
-
-// console.log(chalk.yellow('--- --- ---'));
-
-// console.log(chalk.red('Shutting down weather app...'));
-
-console.log('Hello World');
+  window.location = `/weather?search=${location}`
+});

@@ -3,19 +3,26 @@
 
 <head>
   <%- include('../components/head'); %>
-  <script type="module" src="../main.js"></script>
 </head>
 
 <body>
   <%- include('../components/header'); %>
 
-  <main class="container">
-    <h1><%= siteName %></h1>
+    <main class="container">
+      <h1>
+        <%= siteName %>
+      </h1>
 
-    <span>Let's get that weather...</span>
-  </main>
+      <form id="search-form">
+        <div>Enter your destination below!</div>
+        <input id="search-field" placeholder="Location" >
+        <button id="search-button" type="submit">Search</button>
+      </form>
+    </main>
 
-  <%- include('../components/footer'); %>
+    <%- include('../components/footer'); %>
+
+    <script type="module" src="../main.js"></script>
 </body>
 
 </html>

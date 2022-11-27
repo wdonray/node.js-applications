@@ -31,3 +31,13 @@ footer {
   margin-top: 16px;
   padding: 16px 0;
 }
+
+.weather-container {
+  display: flex;
+  flex-direction: column;
+}
+
+form div {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
