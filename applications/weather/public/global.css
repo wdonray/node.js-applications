@@ -1,0 +1,33 @@
+body {
+  max-width: 650px;
+  margin: 0 auto;
+  padding: 0 16px;
+  background-color: #202124;
+  color: white;
+}
+
+h1 {
+  font-weight: bold;
+  font-size: 64px;
+}
+
+a {
+  color: #bdc1c6;
+  text-decoration: none;
+}
+
+header {
+  margin-top: 16px;
+  margin-bottom: 48px;
+}
+
+header a:not(:first-child) {
+  margin: 0px 10px;
+}
+
+footer {
+  color: #888888;
+  border-top: 1px solid white;
+  margin-top: 16px;
+  padding: 16px 0;
+}

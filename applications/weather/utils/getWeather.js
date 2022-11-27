@@ -2,6 +2,8 @@ import axios from 'axios';
 import chalk from 'chalk';
 import { getCords } from './getCords.js';
 
+axios.defaults.headers.common['accept-encoding'] = null;
+
 export const getWeather = async (address) => {
   try {
     const { latitude, longitude } = await getCords(address);
