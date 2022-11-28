@@ -9,6 +9,7 @@
   </i>
 </sub>
 
+---
 Node.js expanded the capabilities of Javascript. Before Node, JS was limited to what the browser could do. With Node you can now use JS to build things like web servers and connect to databases, command line interfaces and back-end applications. 
 
 ##### Important side notes
