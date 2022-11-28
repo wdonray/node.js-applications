@@ -20,7 +20,6 @@ Node.js expanded the capabilities of Javascript. Before Node, JS was limited to 
 
 
 # Why should you use Node.js?
----
 
 Node uses an event-driven, non-blocking input/output model that makes it lightweight and efficient. While you are making request Node can still run as you are waiting for that request to return a response.
 
