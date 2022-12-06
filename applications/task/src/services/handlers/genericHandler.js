@@ -45,9 +45,14 @@ export const fetchResource = async (resourceModel, _req, res, searchObject = nul
   }
 };
 
-export const deleteResource = async (resourceModel, req, res) => {
+export const deleteResource = async (resourceModel, res, searchObject) => {
+  if (searchObject === null) {
+    res.status(400).send('Please include search.');
+    return;
+  }
+
   try {
-    const resource = await resourceModel.findOneAndDelete(req.params.id);
+    const resource = await resourceModel.findOneAndDelete(searchObject);
 
     if (!resource) {
       res.status(404).send();

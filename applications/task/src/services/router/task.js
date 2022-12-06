@@ -17,7 +17,7 @@ export const setupTaskRouter = (Task) => {
   taskRouter.get(idRoute, async (req, res) => await fetchResource(Task, req, res, { _id: req.params.id, owner: req.user._id }));
 
   // Delete task
-  taskRouter.delete(idRoute, async (req, res) => await deleteResource(Task, req, res));
+  taskRouter.delete(idRoute, async (req, res) => await deleteResource(Task, res, { _id: req.params.id, owner: req.user._id }));
 
   // Update task
   taskRouter.patch(idRoute, async (req, res) => 
