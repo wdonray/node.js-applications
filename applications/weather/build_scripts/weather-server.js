@@ -15,7 +15,7 @@ dotenv.config();
 const app = express();
 
 // Store port from .env
-const port = process.env.PORT;
+const port = process.env.PORT_2;
 
 const publicPath = path.join(__dirname, '../public');
 const srcPath = path.join(__dirname, '../src');
