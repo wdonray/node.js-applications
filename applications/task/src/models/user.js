@@ -106,14 +106,23 @@ export const findByCredentials = async (userModel, email, password) => {
   }
 };
 
-export const generateAuthToken = async (user, secret) => {
+export const generateAuthToken = async (userModel, secret) => {
   try {
-    const token = jwt.sign({ _id: user._id.toString() }, secret);
-    user.tokens = user.tokens.concat({ token });
+    const token = jwt.sign({ _id: userModel._id.toString() }, secret);
+    userModel.tokens = userModel.tokens.concat({ token });
  
-    await user.save();
+    await userModel.save();
 
     return token;
+  } catch (err) {
+    throw new Error(err);
+  }
+}
+
+// Delete user tasks when user is removed
+export const clearTaskOnUserDelete = async (userModel, taskModel) => {
+  try {
+    await taskModel.deleteMany({ owner: userModel._id });
   } catch (err) {
     throw new Error(err);
   }

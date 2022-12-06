@@ -1,10 +1,10 @@
 import { Router } from 'express';
 import { updateResource } from '../handlers/genericHandler.js';
-import { findByCredentials, generateAuthToken } from '../../models/user.js';
+import { findByCredentials, generateAuthToken, clearTaskOnUserDelete } from '../../models/user.js';
 
 const route = '/users';
 
-export const setupUserRouter = (User, secret) => {
+export const setupUserRouter = (User, Task, secret) => {
   const userRouter = new Router();
   
   // Login User
@@ -74,6 +74,7 @@ export const setupUserRouter = (User, secret) => {
   userRouter.delete(`${route}/me`, async (req, res) => {
     try {
       await req.user.remove();
+      await clearTaskOnUserDelete(req.user, Task);
       res.send(req.user);
     } catch (err) {
       res.status(500).send(err);
