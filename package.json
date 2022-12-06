@@ -10,16 +10,16 @@
   "scripts": {
     "app:notes": "node applications/taking-notes/main.js",
     "inspect:notes": "node inspect applications/taking-notes/main.js",
-    "app:task": "nodemon applications/task/main.js",
+    "app:task": "nodemon applications/task/index.js",
     "inspect:task": "node inspect applications/task/main.js",
-    "app:weather": "node applications/weather/src/main.js",
     "inspect:weather": "node inspect applications/weather/main.js",
     "serve:weather": "nodemon applications/weather/build_scripts/weather-server.js -e js,ejs",
     "example:append": "node examples/appendFile/append-message.js",
     "example:exporting": "node examples/exporting/importing.js",
     "example:json": "node examples/json/json.js",
     "example:raw-http": "node examples/raw-http/raw-http.js",
-    "example:web-server": "nodemon examples/web-server/express.js"
+    "example:web-server": "nodemon examples/web-server/express.js",
+    "example:mongodb": "node examples/mongodb/mongodb.js"
   },
   "repository": {
     "type": "git",
@@ -34,11 +34,18 @@
   "type": "module",
   "dependencies": {
     "axios": "^1.2.0",
+    "bcrypt": "^5.1.0",
     "chalk": "^5.1.2",
     "dotenv": "^16.0.3",
     "ejs": "^3.1.8",
     "express": "^4.18.2",
+    "jsonwebtoken": "^8.5.1",
+    "mongodb": "^4.12.1",
+    "mongoose": "^6.7.4",
     "validator": "^13.7.0",
     "yargs": "^17.6.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
   }
 }
