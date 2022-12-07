@@ -4,7 +4,7 @@ import { hash, compare } from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
 export const createUserModel = () => {
-  const schema = new Schema({
+  const userModel = {
     name: {
       type: String,
       required: true,
@@ -53,7 +53,13 @@ export const createUserModel = () => {
         }
       }
     ]
-  });
+  };
+
+  const options = {
+    timestamps: true,
+  };
+
+  const schema = new Schema(userModel, options);
 
   schema.virtual('tasks', {
     ref: 'Task',

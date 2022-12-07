@@ -11,7 +11,8 @@ export const createResource = async (resourceModel, req, res, body = null) => {
   }
 };
 
-export const fetchResources = async (resourceModel, res, searchObject = null) => {
+export const fetchResources = async ({ resourceModel, res, searchObject = null }) => {
+  console.log(searchObject)
   if (searchObject === null) {
     res.status(400).send('Please include owner.');
     return;

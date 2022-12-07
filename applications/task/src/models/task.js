@@ -1,7 +1,7 @@
 import { Schema, model, ObjectId } from 'mongoose';
 
 export const createTaskModel = () => {
-  const schema = new Schema({
+  const taskModel = {
     description: {
       type: String,
       required: true,
@@ -16,7 +16,13 @@ export const createTaskModel = () => {
       required: true,
       ref: 'User',
     }
-  });
+  };
+
+  const options = {
+    timestamps: true,
+  };
+  
+  const schema = new Schema(taskModel, options);
 
   if (!schema.options.toJSON) {
     schema.options.toJSON = {}; 
