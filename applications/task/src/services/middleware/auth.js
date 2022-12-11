@@ -1,9 +1,19 @@
 import jwt from 'jsonwebtoken';
 
-export const authMiddleware = async (req, res, next, secret, user) => {
-  const freePass = ['/users', '/users/login'];
+const isExactPath = (path) => {
+  const exactPathPass = ['/users', '/users/login'];
+  return exactPathPass.some((value) => value === path)
+}
 
-  if (freePass.some((value) => value === req.path)) {
+// TODO: This raises security issues!
+const containsPath = (path) => {
+  const contains = ['/avatar'];
+
+  return contains.some((value) => path.includes(value));
+}
+
+export const authMiddleware = async (req, res, next, secret, user) => {
+  if (isExactPath(req.path) || containsPath(req.path)) {
     return next();
   }
 

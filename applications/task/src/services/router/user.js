@@ -1,12 +1,26 @@
 import { Router } from 'express';
 import { updateResource } from '../handlers/genericHandler.js';
 import { findByCredentials, generateAuthToken, clearTaskOnUserDelete } from '../../models/user.js';
+import multer from 'multer';
 
 const route = '/users';
 
+const upload = multer({
+  limits: {
+    fileSize: 1000000,
+  },
+  fileFilter(req, file, cb) {
+    if (!file.originalname.match(/\.(jpg|jpeg|png)$/)) {
+      return cb(new Error('Please upload an image!'))
+    }
+    
+    cb(null, true)
+  }
+});
+
 export const setupUserRouter = (User, Task, secret) => {
   const userRouter = new Router();
-  
+
   // Login User
   userRouter.post(`${route}/login`, async (req, res) => {
     try {
@@ -90,6 +104,43 @@ export const setupUserRouter = (User, Task, secret) => {
       resourceModel: User, 
     }) 
   );
+
+  // Upload Avatar
+  userRouter.post(`${route}/me/avatar`, upload.single('avatar'), async (req, res) => {
+    if (!req.file) {
+      res.status(400).send({ error: 'Missing file!' });
+      return;
+    }
+
+    req.user.avatar = req.file.buffer;
+    await req.user.save();
+    res.send(req.user);
+  }, (error, _req, res, _next) => {
+    res.status(400).send({ error: error.message })
+  });
+
+  // Delete Avatar
+  userRouter.delete(`${route}/me/avatar`, upload.single('avatar'), async (req, res) => {
+    req.user.avatar = undefined;
+    await req.user.save();
+    res.send(req.user);
+  });
+
+  // Serve Avatar
+  userRouter.get(`${route}/:id/avatar`, async (req, res) => {
+    try {
+      const user = await User.findById(req.params.id);
+
+      if (!user || !user.avatar) {
+        throw new Error();
+      }
+
+      res.set('Content-Type', 'image/jpg');
+      res.send(user.avatar);
+    } catch (err) {
+      res.status(400).send();
+    }
+  });
 
   return userRouter;
 };

@@ -52,7 +52,10 @@ export const createUserModel = () => {
           required: true,
         }
       }
-    ]
+    ],
+    avatar: {
+      type: Buffer,
+    }
   };
 
   const options = {
@@ -86,6 +89,7 @@ export const createUserModel = () => {
     delete ret.password;
     delete ret.tokens;
     delete ret.__v;
+    delete ret.avatar;
     return ret;
   }
 
