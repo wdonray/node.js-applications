@@ -19,7 +19,7 @@ app.use(async (req, res, next) => await authMiddleware(req, res, next, process.e
 app.use(express.json());
 
 app.use(setupUserRouter(User, Task, process.env.JWT_SECRET));
-app.use(setupTaskRouter(Task));\
+app.use(setupTaskRouter(Task));
 
 app.listen(port, () => {
   console.log(chalk.cyanBright(`Server started on port ${port}...`));
